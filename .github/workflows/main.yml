@@ -10,9 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     # Vérifie si le dernier message de commit contient 'v.'2
-    if: contains(join(github.event.commits.*.message), 'v*.*.*')
+    if: contains(join(github.event.commits.*.message), 'v')
 
     steps:
+      - name: Check commit message
+        run: if [[ "${{ github.event.head_commit.message }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            echo "Version commit detected!";
+            exit 0;
+          else
+            echo "Not a version commit.";
+            exit 1;  
+  
       - name: Checkout code
         uses: actions/checkout@v2
 
