@@ -9,7 +9,7 @@ jobs:
   conditional-job:
     runs-on: ubuntu-latest
 
-    # Vérifie si le dernier message de commit contient 'v.'2d
+    # Vérifie si le dernier message de commit contient 'v.'
     if: contains(join(github.event.commits.*.message), 'v')
 
     steps:
