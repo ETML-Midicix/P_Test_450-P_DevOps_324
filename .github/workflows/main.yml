@@ -11,8 +11,7 @@ on:
 
 jobs:
   conditional-test:
-    if: |
-      contains(github.event.commits.*.message | join(' '), 'v.') # Vérifie la présence de 'v.' dans les messages de commit
+    if: contains(github.event.commits.*.message | join(' '), 'v.') # Vérifie la présence de 'v.' dans les messages de commit
 
     runs-on: ubuntu-latest
     
