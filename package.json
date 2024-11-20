@@ -31,7 +31,7 @@
     "testEnvironment": "node",
     "testTimeout": 2000,
     "setupFilesAfterEnv": [
-      "./jest.setup.js"
+      "./backend/jest.setup.js"
     ],
     "coverageReporters": [
       "html",
