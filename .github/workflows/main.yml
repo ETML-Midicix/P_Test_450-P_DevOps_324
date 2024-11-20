@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # Vérifie si le dernier message de commit contient 'v.'2
-    if: contains(join(github.event.commits.*.message), 'v.')
+    if: contains(join(github.event.commits.*.message), 'v*.*.*')
 
     steps:
       - name: Checkout code
