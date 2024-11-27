@@ -23,8 +23,8 @@ jobs:
         run: |
           cd backend
           $DOCKER_TOKEN
-          docker build -t backEnd:latest . 
-          docker tag backEnd:latest julienmares/backEnd:latest
+          docker build -t backend:latest . 
+          docker tag backEnd:latest julienmares/backend:latest
 
       - name: Push Docker image
         run: |
