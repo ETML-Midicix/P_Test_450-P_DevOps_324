@@ -21,11 +21,9 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build image
         run: |
-          cd backend
-          $DOCKER_TOKEN
-          docker build -t backend:latest . 
-          docker tag backend:latest julienmares/backend:latest
+          docker build -t todo:latest . 
+          docker tag todo:latest julienmares/todo:latest
 
       - name: Push Docker image
         run: |
-          docker push julienmares/my-app:latest
+          docker push julienmares/todo:latest
