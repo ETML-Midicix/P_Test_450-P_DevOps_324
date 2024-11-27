@@ -27,8 +27,7 @@ jobs:
           password: ${{ secrets.$DOCKER_TOKEN }}
       - name: Build image
         run: |
-        cd ../../backend
-        docker login -u julienmares
+        cd backend
         $DOCKER_TOKEN
         docker build -t backEnd:latest . 
         docker tag backEnd:latest julienmares/backEnd:latest
