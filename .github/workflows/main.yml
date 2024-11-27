@@ -2,26 +2,17 @@ name: Main Workflow
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*.*.*'
 
 jobs:
   conditional-job:
     runs-on: ubuntu-latest
 
     # Vérifie si le dernier message de commit contient 'v's
-    if: contains(github.event.head_commit.message, 'v')
 
     steps:
-      - name: Check commit message
-        run: |
-          if [[ "${{ github.event.head_commit.message }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then
-            echo "Version commit detected!";
-          else
-            echo "Not a version commit.";
-            exit 0;  # Exit gracefully without failing the job
-          fi
-
+    
       - name: Checkout code
         uses: actions/checkout@v2
 
