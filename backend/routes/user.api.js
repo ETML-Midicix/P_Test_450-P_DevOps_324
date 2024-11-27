@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jsonwebtoken = require("jsonwebtoken");
 
 const UserModel = require("../database/models/user.model");
-const { keyPub } = require("../env/keys");
+const { keyPub } = require("../env/keys/index.js");
 const TodoModel = require("../database/models/todo.model");
 
 const cleanUser = (user) => {

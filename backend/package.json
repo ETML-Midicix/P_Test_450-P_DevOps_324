@@ -2,6 +2,7 @@
   "name": "todo-api",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node --watch index.js",
     "start:env": "node --env-file=.env --watch index.js",
