@@ -17,13 +17,13 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: julienmares
+          username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build image
         run: |
           docker build -t todo:latest . 
-          docker tag todo:latest julienmares/todo:latest
+          docker tag todo:latest ${{ secrets.DOCKER_USER }}/todo:latest
 
       - name: Push Docker image
         run: |
-          docker push julienmares/todo:latest
+          docker push ${{ secrets.DOCKER_USER }}/todo:latest
