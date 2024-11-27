@@ -1,0 +1,38 @@
+name: Workflow de Deploiement
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-frontend-image:
+    runs-on: windows-latest
+
+    # Vérifie si le dernier message de commit contient 'v's
+
+    steps:
+    
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get lastest tag
+        run: | 
+          git fetch -tags
+          LAST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null || echo "v0.0.0")
+          echo "LAST_TAG=$LAST_TAG" >> $GITHUB_ENV
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: julienmares
+          password: ${{ secrets.$DOCKER_TOKEN }}
+      - name: Build image
+        run: |
+        cd ../../backend
+        docker login -u julienmares
+        $DOCKER_TOKEN
+        docker build -t backEnd:latest . 
+        docker tag backEnd:latest julienmares/backEnd:latest
+
+      - name: Push Docker image
+        run: |
+          docker push julienmares/my-app:latest
