@@ -1,20 +1,32 @@
-version: "3.8"
 services:
 
     backend:
         build:
-            context: /backend
+            context: ./
             dockerfile: ./dockerfile
+            target: backend
         ports:
             - "3000:3000"
         volumes:
-            - ./backend:/go/src/app
+            - todoapp:/todoapp
 
     frontend:
         build:
-            context: /frontend
+            context: ./
             dockerfile: ./dockerfile
+            target: frontend
         ports:
             - "5173:5173"
         volumes:
-            - ./frontend:/app
+            - todoapp:/usr/app/todoapp
+
+    # app:
+    #     build:
+    #         context: ./
+    #         dockerfile: ./dockerfile
+    #     ports:
+    #         - "5173:5173"
+    #         - "3000:3000"
+
+volumes:
+  todoapp:
