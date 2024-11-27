@@ -7,7 +7,7 @@ on:
 
 jobs:
   conditional-job:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     # Vérifie si le dernier message de commit contient 'v's
 
