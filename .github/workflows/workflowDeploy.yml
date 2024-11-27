@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-frontend-image:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # Vérifie si le dernier message de commit contient 'v's
 
