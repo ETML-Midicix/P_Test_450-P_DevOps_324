@@ -26,16 +26,20 @@ jobs:
         run: npm run test:ci
 
   linting:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    runs-on: windows-latest
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20.17'
+    steps:
 
-      - name: Install dependencies
-        run: npm install
+        - name: Checkout code
+          uses: actions/checkout@v2
 
-      - name: Run tests
-        run: npm run lint
+        - name: Set up Node.js
+          uses: actions/setup-node@v2
+          with:
+            node-version: '20.17'
+
+        - name: Install dependencies
+          run: npm install
+
+        - name: Run tests
+          run: npm run lint
