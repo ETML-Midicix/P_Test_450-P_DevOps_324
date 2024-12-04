@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-frontend-image:
+  build-image:
     runs-on: ubuntu-latest
 
     # Vérifie si le dernier message de commit contient 'v's
