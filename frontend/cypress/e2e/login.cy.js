@@ -7,6 +7,7 @@ describe('Test de connexion', () => {
 
 
     it('Deplacement vers inscription', ()=> {
+        //Création du compte
         cy.visit('http://localhost:5173/register');
         cy.get('input[name="email"]').type('test@example.com');
         cy.get('input[name="password"]').type('password123');
@@ -14,9 +15,15 @@ describe('Test de connexion', () => {
 
 
         cy.get('button[type="submit"]').click();
-        cy.url().should('include', '/login'); // Vérifie que l'URL contient '/dashboard'
+        cy.url().should('include', '/login'); // Vérifie que l'URL contient '/login' pour vérifier la redirection
 
-        
+
+        //Connexion avec le compte créer précédement
+        cy.visit('http://localhost:5173/login');
+        cy.get('input[name="email"]').type('test@example.com');
+        cy.get('input[name="password"]').type('password123');
+
+        cy.get('button[type="submit"]').click();
     })
   /*
     it('devrait se connecter avec des identifiants valides', () => {
