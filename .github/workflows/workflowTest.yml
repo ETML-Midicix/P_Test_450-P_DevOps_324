@@ -6,10 +6,8 @@ on:
       - 'v*.*.*'
 
 jobs:
-  conditional-job:
+  execution-tests-unitaire:
     runs-on: windows-latest
-
-    # Vérifie si le dernier message de commit contient 'v's
 
     steps:
     
@@ -26,3 +24,22 @@ jobs:
 
       - name: Run tests
         run: npm run test:ci
+
+  linting:
+    runs-on: windows-latest
+
+    steps:
+
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - name: Set up Node.js
+          uses: actions/setup-node@v2
+          with:
+            node-version: '20.17'
+
+        - name: Install dependencies
+          run: npm install
+
+        - name: Run eslint
+          run: npm run lint
