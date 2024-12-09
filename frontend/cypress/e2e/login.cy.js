@@ -10,10 +10,13 @@ describe('Test de connexion', () => {
         cy.visit('http://localhost:5173/register');
         cy.get('input[name="email"]').type('test@example.com');
         cy.get('input[name="password"]').type('password123');
+        cy.get('input[name="confirmation"]').type('password123');
+
 
         cy.get('button[type="submit"]').click();
+        cy.url().should('include', '/login'); // Vérifie que l'URL contient '/dashboard'
 
-        cy.contains('e').should('be.visible');
+        
     })
   /*
     it('devrait se connecter avec des identifiants valides', () => {
