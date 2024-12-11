@@ -26,11 +26,11 @@ jobs:
       - name: Build frontend image
         run: |
           docker build -t todo-frontend:latest ./frontend/ 
-          docker tag todo:latest ${{ secrets.DOCKER_USER }}/todo-frontend:latest
+          docker tag todo-frontend:latest ${{ secrets.DOCKER_USER }}/todo-frontend:latest
       - name: Build backend image
         run: |
           docker build -t todo-backend:latest ./backend/
-          docker tag todo:latest ${{ secrets.DOCKER_USER }}/todo-backend:latest
+          docker tag todo-backend:latest ${{ secrets.DOCKER_USER }}/todo-backend:latest
 
       - name: Push Docker image
         run: |
