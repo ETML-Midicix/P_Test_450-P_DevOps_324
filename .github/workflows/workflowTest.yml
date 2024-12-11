@@ -2,8 +2,7 @@ name: Workflow de Test
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches: [ "main" ]
 
 jobs:
   execution-tests-unitaire:
@@ -21,6 +20,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: audit fix packages
+        run: npm audit fix
 
       - name: Run tests
         run: npm run test:ci
@@ -41,5 +43,8 @@ jobs:
         - name: Install dependencies
           run: npm install
 
+        - name: audit fix packages
+          run: npm audit fix
+        
         - name: Run eslint
           run: npm run lint
