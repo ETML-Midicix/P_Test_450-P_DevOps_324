@@ -1,5 +1,11 @@
 # todo-app
 
+---
+
+[![.NET](https://github.com/ETML-Midicix/PORTFOLIO_ASP_PENDU_CICD_ATO_AMD/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/ETML-Midicix/PORTFOLIO_ASP_PENDU_CICD_ATO_AMD/actions/workflows/dotnet.yml)
+
+---
+
 This simple Todo app use in frontend made with Vue.js 3 using TypeScript and 
 TailWinCSS for the HTML view.
 
