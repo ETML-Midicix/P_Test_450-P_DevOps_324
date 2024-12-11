@@ -23,9 +23,9 @@ jobs:
 
       - name: audit packages
         run: |
-        if [npm audit]; then
+        if npm audit; then
           echo "Pas de vulnérablités détectés"
-        else; then
+        else
           echo "vulnérabilité(s) détecté(s), tentative de fix"
           npm audit fix
         fi
@@ -52,12 +52,12 @@ jobs:
 
         - name: audit packages
           run: |
-          if [npm audit]; then
-            echo "Pas de vulnérablités détectés"
-          else; then
-            echo "vulnérabilité(s) détecté(s), tentative de fix"
-            npm audit fix
-          fi
+            if npm audit; then
+              echo "Pas de vulnérablités détectés"
+            else
+              echo "vulnérabilité(s) détecté(s), tentative de fix"
+              npm audit fix
+            fi
         
         - name: Run eslint
           run: npm run lint
