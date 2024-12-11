@@ -2,7 +2,8 @@
 
 ---
 
-[![.NET](https://github.com/ETML-Midicix/PORTFOLIO_ASP_PENDU_CICD_ATO_AMD/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/ETML-Midicix/PORTFOLIO_ASP_PENDU_CICD_ATO_AMD/actions/workflows/dotnet.yml)
+[![Workflow de Deploiement](https://github.com/ETML-Midicix/cicd-todo-app/actions/workflows/workflowDeploy.yml/badge.svg)](https://github.com/ETML-Midicix/cicd-todo-app/actions/workflows/workflowDeploy.yml)
+[![Workflow de Test](https://github.com/ETML-Midicix/cicd-todo-app/actions/workflows/workflowTest.yml/badge.svg)](https://github.com/ETML-Midicix/cicd-todo-app/actions/workflows/workflowTest.yml)
 
 ---
 
