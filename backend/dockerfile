@@ -1,0 +1,16 @@
+FROM node:20.17
+
+EXPOSE 3000:3000
+
+# WORKDIR /usr/app/backend
+WORKDIR /usr/app/todoapp/backend
+
+COPY backend/package*.json .
+
+RUN npm install 
+
+COPY backend/ .
+
+# RUN npm start
+
+CMD ["npm", "start"]
