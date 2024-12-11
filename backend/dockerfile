@@ -5,11 +5,11 @@ EXPOSE 3000:3000
 # WORKDIR /usr/app/backend
 WORKDIR /usr/app/todoapp/backend
 
-COPY backend/package*.json .
+COPY package*.json .
 
 RUN npm install 
 
-COPY backend/ .
+COPY . .
 
 # RUN npm start
 
