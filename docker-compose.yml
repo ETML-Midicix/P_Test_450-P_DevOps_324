@@ -1,20 +1,26 @@
 services:
 
     backend:
-        build:
-            context: ./
-            dockerfile: ./dockerfile
-            target: backend
+        image: julienmares/todo-backend:latest
+        # image: julienmares/todo:latest
+        # build:
+            # context: ./todo
+            # context: ./
+            # dockerfile: ./dockerfile
+            # target: backend
         ports:
             - "3000:3000"
         volumes:
             - todoapp:/todoapp
 
     frontend:
-        build:
-            context: ./
-            dockerfile: ./dockerfile
-            target: frontend
+        image: julienmares/todo-frontend:latest
+        # image: julienmares/todo:latest
+        # build:
+            # context: ./todo
+            # context: ./
+            # dockerfile: ./dockerfile
+            # target: frontend
         ports:
             - "5173:5173"
         volumes:
