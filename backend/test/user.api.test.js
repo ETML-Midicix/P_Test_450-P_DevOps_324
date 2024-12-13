@@ -46,6 +46,26 @@ describe('Gestion compte', () => {
             .delete('/api/user/delete')
             .set('Cookie', `token=${token}`); // Définir le header via .set()
             expect(response.statusCode).toBe(200);
+    });
+    it('Update compte', async () => {
+        const user = new UserModel({
+            email: "test@gmail.com",
+            password: await bcrypt.hash("passwordTest", 8),
+        });
+        await user.save();
+        const token = jsonwebtoken.sign({}, key, {
+            subject: user._id.toString(),
+            expiresIn: 60 * 60 * 24 * 30 * 6,
+            algorithm: 'RS256',
+            });
 
+            const response = await request(app)
+            .patch('/api/user/edit')
+            .set('Cookie', `token=${token}`)
+            .send({
+                email:"nouveauEmail@gmail.com"
+            }); // Définir le header via .set()
+            expect(response.statusCode).toBe(200);
+            expect(response.body.email).toBe('nouveauEmail@gmail.com');
     });
 });
