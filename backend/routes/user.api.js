@@ -37,6 +37,7 @@ router.post("/add", async (req, res) => {
 // delete current user
 router.delete("/delete", async (req, res) => {
   const token = req.cookies?.token;
+  console.log(req.cookies)
   if (token) {
     const decodedToken = jsonwebtoken.verify(token, keyPub);
     if(ObjectId.isValid(decodedToken.sub)) {
@@ -75,7 +76,9 @@ router.patch("/edit", async (req, res) => {
             new: true 
           }
         );
-        res.status(200).json(result);
+        // Code de base corrigé afin de retourner les modifications faites
+        // res.status(200).json(result);
+        res.status(200).json(cleanUser(result));
       } catch (err) {
         console.error("UPDATE USER: ", err);
         res.status(400).json(null);
