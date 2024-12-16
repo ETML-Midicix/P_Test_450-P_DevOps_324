@@ -17,9 +17,10 @@ router.post("/add", async (req, res) => {
         completed: false,
         user_id: new ObjectId(decodedToken.sub)
       });
+      console.log("ajout todo "+body.text)
       try {
         await todo.save();
-        res.status(200).json(null);
+        res.status(200).json(body);
       } catch (err) {
         console.error("CREATE TODO: ", err);
         res.status(400).json("Erreur lors de la création du todo");
@@ -57,6 +58,7 @@ router.post("/:id", async (req, res) => {
   const query = { _id: new ObjectId(req.params.id) };
   if(ObjectId.isValid(req.params.id)) {
     try {
+      console.log("supression todo : " )
       await TodoModel.findOneAndDelete(query);
       res.status(200).json(null);
     } catch (err) {
