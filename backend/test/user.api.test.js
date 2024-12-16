@@ -47,6 +47,7 @@ describe('Gestion compte', () => {
             .set('Cookie', `token=${token}`); // Définir le header via .set()
             expect(response.statusCode).toBe(200);
     });
+
     it('Update compte', async () => {
         const user = new UserModel({
             email: "test@gmail.com",
@@ -68,4 +69,26 @@ describe('Gestion compte', () => {
             expect(response.statusCode).toBe(200);
             expect(response.body.email).toBe('nouveauEmail@gmail.com');
     });
+
+
+    it('get current user compte', async () => {
+        const user = new UserModel({
+            email: "test@gmail.com",
+            password: await bcrypt.hash("passwordTest", 8),
+        });
+        await user.save();
+        const token = jsonwebtoken.sign({}, key, {
+            subject: user._id.toString(),
+            expiresIn: 60 * 60 * 24 * 30 * 6,
+            algorithm: 'RS256',
+            });
+
+            const response = await request(app)
+            .get('/api/user')
+            .set('Cookie', `token=${token}`)
+
+            expect(response.statusCode).toBe(200);
+    });
 });
+
+
