@@ -26,8 +26,7 @@ jobs:
           npm audit || (
             echo "Vulnérabilité(s) détectée(s), tentative de fix" &&
             npm audit fix
-          )
-        
+          )        
 
       - name: Run tests
         run: npm run test:ci

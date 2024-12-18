@@ -14,6 +14,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: audit packages
+        run: |
+          npm audit || (
+            echo "Vulnérabilité(s) détectée(s), tentative de fix" &&
+            npm audit fix
+          )
+          
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
