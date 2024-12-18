@@ -18,8 +18,10 @@ jobs:
         with:
           node-version: '20.17'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies on backend
+        run: |
+          cd backend
+          npm install
 
       - name: audit packages
         run: |
@@ -29,10 +31,7 @@ jobs:
           )        
 
       - name: Run tests
-        run: |
-          cd backend
-          npm install
-          npm run test:ci
+        run: npm run test:ci
 
   linting:
     runs-on: windows-latest
