@@ -29,7 +29,9 @@ jobs:
           )        
 
       - name: Run tests
-        run: npm run test:ci
+        run: | 
+          cd backend
+          npm run test:ci
 
   linting:
     runs-on: windows-latest
