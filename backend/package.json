@@ -23,7 +23,6 @@
   "devDependencies": {
     "eslint": "^9.16.0",
     "bcrypt": "^5.1.1",
-    "eslint": "^9.13.0",
     "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
     "supertest": "^7.0.0"
