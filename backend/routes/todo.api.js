@@ -59,8 +59,8 @@ router.post("/:id", async (req, res) => {
   if(ObjectId.isValid(req.params.id)) {
     try {
       console.log("supression todo : " )
+      res.status(200).json(query);
       await TodoModel.findOneAndDelete(query);
-      res.status(200).json(null);
     } catch (err) {
       console.error("DELETE TODO: ", err);
       res.status(400).json(null);
