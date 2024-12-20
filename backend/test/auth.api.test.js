@@ -1,40 +1,38 @@
 const request = require('supertest');
 const express = require('express');
 const router = require('../routes/index');
-
-const UserModel = require('../database/models/user.model')
+const UserModel = require('../database/models/user.model');
+const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(express.json());
 app.use(router);
 
-// Supprime tout les users afin d'avoir une base propre
+let user;
+
 beforeEach(async () => {
+    // Supprime tous les utilisateurs pour une base propre
     await UserModel.deleteMany({});
-  });
+
+    // Crée un utilisateur par défaut pour les tests
+    user = new UserModel({
+        email: "test@gmail.com",
+        password: await bcrypt.hash("passwordTest", 8),
+    });
+    await user.save();
+});
 
 describe('Authentification', () => {
-
     it('Connexion user avec donnée valide', async () => {
-        const bcrypt = require('bcrypt');
-        // Définition d'un mockup
-        const user = new UserModel({
-          email: "test@gmail.com",
-          password: await bcrypt.hash("passwordTest", 8),
-        });
-        await user.save();
-        // Essaie de connexion avec les bonnes infos (par rapport au mockups)
         const response = await request(app)
             .post('/api/auth')
-            .send({ email: 'test@gmail.com', password: 'passwordTest' });
-            expect(response.status).toBe(200);
-            expect(response.body.email).toBe('test@gmail.com');
+            .send({ email: user.email, password: 'passwordTest' });
 
-         
+        expect(response.status).toBe(200);
+        expect(response.body.email).toBe(user.email);
     });
 
     it('Connexion user avec donnée invalide', async () => {
-        // Essaie de connexion (alors qu'aucun mockup n'a été définis)
         const response = await request(app)
             .post('/api/auth')
             .send({ email: 'User@gmail.com', password: 'passwordTest' });
@@ -44,19 +42,10 @@ describe('Authentification', () => {
     });
 
     it('Connexion user avec mauvais password', async () => {
-        //Création d'un user de test
-        const bcrypt = require('bcrypt');
-        // Définition d'un mockup
-        const user = new UserModel({
-          email: "User@gmail.com",
-          password: await bcrypt.hash("MotDePasse", 8),
-        });
-        await user.save();
-        // Essaie de connexion avec infos erronées
         const response = await request(app)
             .post('/api/auth')
-            .send({ email: 'User@gmail.com', password: 'MauvaisMotDePasse' });
-            expect(response.status).toBe(400);
-         
+            .send({ email: user.email, password: 'MauvaisMotDePasse' });
+
+        expect(response.status).toBe(400);
     });
 });
