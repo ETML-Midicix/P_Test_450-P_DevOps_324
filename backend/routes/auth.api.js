@@ -31,11 +31,11 @@ router.post('/', async (req, res) => {
     res.status(400).json('Utilisateur non trouvé');
   }
 });
-
+/* To Check #2 A quoi sert cette route ? faut-il la tester ?
 router.delete('/', async (req, res) => {
   res.clearCookie('token');
   res.end();
 });
-
+*/
 
 module.exports = router;

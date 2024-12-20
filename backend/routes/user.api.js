@@ -111,11 +111,11 @@ router.get("/", async (req, res) => {
     res.status(400).json(null);
   }
 });
-
+/* To Check #1 A quoi sert cette route
 // login user
 router.post("/login", async (req, res) => {
   // Pour tester le Test coverage vizualizer
   return res.json({ message: "test" });
 });
-
+*/
 module.exports = router;
