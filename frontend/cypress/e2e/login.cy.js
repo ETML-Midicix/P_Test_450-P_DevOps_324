@@ -60,6 +60,11 @@ describe('Tests E2E', () => {
         input[0].click();
       });
 
+      // Supprime toutes les tâches et vérifie qu'il y'ait le message "Aucune tâche ..." d'affiché
+      cy.get('input[type="checkbox"]').first().parents('li').find('svg').click()
+      cy.get('input[type="checkbox"]').first().parents('li').find('svg').click()
+      cy.get('input[type="checkbox"]').first().parents('li').find('svg').click()
+      cy.contains('Aucune tâche ...')
       // cy.get('ul[role="list"]').then(tasks =>{
       //   for (let elem of tasks){
       //     elem.children().first()
