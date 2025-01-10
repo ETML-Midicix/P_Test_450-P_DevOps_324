@@ -37,6 +37,7 @@ router.post("/add", async (req, res) => {
 // delete current user
 router.delete("/delete", async (req, res) => {
   const token = req.cookies?.token;
+  console.log(req.cookies)
   if (token) {
     const decodedToken = jsonwebtoken.verify(token, keyPub);
     if(ObjectId.isValid(decodedToken.sub)) {
@@ -75,7 +76,9 @@ router.patch("/edit", async (req, res) => {
             new: true 
           }
         );
-        res.status(200).json(result);
+        // Code de base corrigé afin de retourner les modifications faites
+        // res.status(200).json(result);
+        res.status(200).json(cleanUser(result));
       } catch (err) {
         console.error("UPDATE USER: ", err);
         res.status(400).json(null);
@@ -108,11 +111,11 @@ router.get("/", async (req, res) => {
     res.status(400).json(null);
   }
 });
-
+/* To Check #1 A quoi sert cette route
 // login user
 router.post("/login", async (req, res) => {
   // Pour tester le Test coverage vizualizer
   return res.json({ message: "test" });
 });
-
+*/
 module.exports = router;
